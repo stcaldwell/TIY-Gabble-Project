@@ -2,9 +2,23 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
     <title>Home</title>
   </head>
   <body>
-    Home
+    <h2>Write a Gab</h2>
+    <textarea name="message" maxlength="140" form="messageform"></textarea>
+    <form class="" action="/" method="post" id="messageform">
+      <input type="submit" name="submit">
+    </form>
+    <h2>Gabs:</h2>
+    <ul class = "messagefeed">
+     {{#messages}}
+
+       <li>{{textbody}}</li>
+
+     {{/messages}}
+   </ul>
+    <p><a href="/logout">Logout</a></p>
   </body>
 </html>

@@ -1,0 +1,15 @@
+body {
+  text-align: center;
+}
+
+fieldset {
+  border: none;
+  width: 15vw;
+  margin: auto;
+
+}
+
+header{
+  height: 10vw;
+  background-color: teal;
+}
