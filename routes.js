@@ -13,13 +13,10 @@ router.use(bodyParser.urlencoded({ extended: false}));
 // Checks that the user is indeed a user and if so renders the home page. If not it redirects you to login.
 router.get('/', function(req, res) {
   if (req.session && req.session.authenticated) {
-    // var activeUser = req.session.activeUser
     var user = models.users.findOne({
       where: {
         username: req.session.username,
-        // id: req.session.activeUser,
-        // password: req.session.password,
-        // include: displayname
+
       }
     }).then(function(currentUser) {
       models.messages.findAll({
@@ -35,39 +32,11 @@ router.get('/', function(req, res) {
   } else {
     res.redirect('/login')
   }
-  // var activeUser = req.session.activeUser
-  // console.log(activeUser)
 })
-// app.get('/', function(req, res){
-//   if (req.session && req.session.authenticated){
-//     var user = models.users.findOne({
-//       where: {
-//         username: req.session.username,
-//       }
-//     }).then(function(textbody){res.render('home', {messages: textbody, user: currentUser})})
-//   }else {
-//     res.redirect('/login')
-//   }
-// })
+
 
 router.post('/', function(req, res){
 
-  // let username = req.body.username;
-  // let password = req.body.password;
-  //
-  // models.users.findOne({
-  //   where: {
-  //     username: username
-  //   }
-  // }).then(user => {
-  //   if(user.password == password) {
-  //     req.session.username = username;
-  //     req.session.authenticated = true;
-  //     res.redirect('/')
-  //   } else {
-  //     res.redirect('/login')
-  //   }
-  // })
   const message = models.messages.build({
     textbody: req.body.message,
     // userid: req.session.userid
@@ -81,7 +50,7 @@ router.post('/', function(req, res){
 router.get('/login', function(req, res){
   res.render('login')
 })
-// Let username and password equal to what the user put in the form as username and password. find the username that was inputted in the database. Then if the inputted password equals to the database password then return that the authentication is complete and redirect to the home page where the messages are. If not redirect to the login.
+// Let username and password equal to what the user put in the form as username and password. find the username, that was inputted, in the database. Then if the inputted password equals to the database password then return that the authentication is complete and redirect to the home page where the messages are. If not redirect to the login.
 router.post('/login', function(req, res){
   let username = req.body.username;
   let password = req.body.password;
