@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(routes);
 
 
-app.listen(3000, function(){
-  console.log('It has begun!')
+app.set('port', (process.env.PORT || 5000));
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });

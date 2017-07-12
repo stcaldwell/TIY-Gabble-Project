@@ -39,7 +39,7 @@ router.post('/', function(req, res){
 
   const message = models.messages.build({
     textbody: req.body.message,
-    // userid: req.session.userid
+    userid: req.session.userid
   })
   message.save().then(function(message) {
     res.redirect('/')
